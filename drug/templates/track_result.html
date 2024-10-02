@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shipment Tracking Results</title>
+</head>
+<body>
+    <h1>Tracking Results for {{ tracking_number }}</h1>
+    
+    {% if shipment_data %}
+        <h2>Shipment Status: {{ shipment_data.status }}</h2>
+        <ul>
+            <li>Tracking Number: {{ shipment_data.data.trackingNumber }}</li>
+            <li>Status: {{ shipment_data.data.status }}</li>
+            <li>Origin: {{ shipment_data.data.origin }}</li>
+            <li>Destination: {{ shipment_data.data.destination }}</li>
+            <!-- Add more details based on the API response -->
+        </ul>
+    {% elif error %}
+        <p>{{ error }}</p>
+    {% endif %}
+
+    <a href="{% url 'track_shipment' %}">Track another shipment</a>
+</body>
+</html>

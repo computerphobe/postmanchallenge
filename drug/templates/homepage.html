@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drug Inventory Management System</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+        }
+
+        h1, h2, h3 {
+            margin: 0;
+        }
+
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #003366; /* Dark Blue */
+            color: white;
+            padding: 10px 20px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #ffcc00; /* Light Gold */
+        }
+
+        .auth-buttons .btn {
+            background-color: #ff9900; /* Orange */
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        .auth-buttons .btn:hover {
+            background-color: #e68a00; /* Darker Orange */
+        }
+
+        /* Hero Section */
+        .hero {
+            background-color: #005cbf; /* Medium Blue */
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+        }
+
+        .hero-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            background-color: #ff9900; /* Orange */
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #e68a00; /* Darker Orange */
+        }
+
+        /* Features Section */
+        #features {
+            padding: 40px 20px;
+            text-align: center;
+            background-color: #ffffff; /* White */
+        }
+
+        .features-flex {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 0 auto;
+            max-width: 1000px;
+        }
+
+        .feature-card {
+            display: block;
+            background: #f9f9f9; /* Light Gray */
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            flex: 1;
+            max-width: 220px;
+            text-decoration: none;
+            color: inherit;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .feature-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .feature-icon {
+            font-size: 50px;
+            margin-bottom: 10px;
+        }
+
+        /* Benefits Section */
+        #benefits {
+            background-color: #ffffff; /* White */
+            padding: 40px 20px;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        #benefits ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        #benefits li {
+            margin: 10px 0;
+            font-size: 18px;
+        }
+
+        /* Testimonials Section */
+        #testimonials {
+            padding: 40px 20px;
+            text-align: center;
+            background-color: #f0f8ff; /* Alice Blue */
+        }
+
+        .testimonial-card {
+            background: #ffffff; /* White */
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            max-width: 300px;
+            margin: 10px auto;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Call to Action Section */
+        #cta {
+            background-color: #005cbf; /* Medium Blue */
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333; /* Dark Gray */
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .footer-info,
+        .social-media,
+        .contact-info {
+            margin: 10px 0;
+        }
+
+        .social-media a {
+            margin: 0 10px;
+            color: white;
+            text-decoration: none;
+        }
+
+        .social-media a:hover {
+            color: #ffcc00; /* Light Gold */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="logo">Drug Inventory System</div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#benefits">Benefits</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#contact">Contact Us</a></li>
+            </ul>
+        </nav>
+        <div class="auth-buttons">
+            <a href="./login.html" class="btn">Login</a>
+            <a href="#signup" class="btn">Sign Up</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Optimize Your Drug Inventory & Supply Chain</h1>
+            <p>Streamline operations, ensure compliance, and enhance visibility.</p>
+            <a href="http://127.0.0.1:5500/Frontend/login.html" class="btn">Get Started</a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features">
+        <h2>Key Features</h2>
+        <div class="features-flex">
+            <a href="#inventory-tracking" class="feature-card">
+                <div class="feature-icon">📦</div>
+                <h3>Real-time Inventory Tracking</h3>
+                <p>Track inventory in real-time to optimize stock levels.</p>
+            </a>
+            <a href="#automated-reordering" class="feature-card">
+                <div class="feature-icon">🔄</div>
+                <h3>Automated Reordering</h3>
+                <p>Set thresholds for automatic reordering.</p>
+            </a>
+            <a href="#compliance-management" class="feature-card">
+                <div class="feature-icon">✅</div>
+                <h3>Compliance Management</h3>
+                <p>Stay compliant with industry regulations.</p>
+            </a>
+            <a href="#reporting-analytics" class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3>Reporting & Analytics</h3>
+                <p>Gain insights through comprehensive reports.</p>
+            </a>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section id="benefits">
+        <h2>Why Choose Us?</h2>
+        <ul>
+            <li>⚙️ Improve Efficiency</li>
+            <li>💰 Reduce Costs</li>
+            <li>🔍 Enhance Traceability</li>
+            <li>🛡️ Ensure Compliance</li>
+            <li>👩‍⚕️ Increase Patient Safety</li>
+        </ul>
+    </section>
+
+    <!-- Customer Testimonials Section -->
+    <section id="testimonials">
+        <h2>What Our Clients Say</h2>
+        <div class="testimonial-carousel">
+            <div class="testimonial-card">
+                <p>"This solution has transformed our inventory management!"</p>
+                <cite>- Client Name</cite>
+            </div>
+            <div class="testimonial-card">
+                <p>"We’ve seen significant cost reductions since we started using this service."</p>
+                <cite>- Client Name</cite>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action Section -->
+    <section id="cta">
+        <h2>Ready to Transform Your Drug Inventory Management?</h2>
+        <p>Join countless others who have streamlined their operations.</p>
+        <a href="#contact" class="btn">Contact Us Today</a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-info">
+            <p><a href="#about">About</a></p>
+            <p><a href="#careers">Careers</a></p>
+            <p><a href="#privacy">Privacy Policy</a></p>
+            <p><a href="#terms">Terms of Service</a></p>
+        </div>
+        <div class="social-media">
+            <a href="#facebook">Facebook</a>
+            <a href="#twitter">Twitter</a>
+            <a href="#linkedin">LinkedIn</a>
+        </div>
+        <div class="contact-info">
+            <p>Phone: (123) 456-7890</p>
+            <p>Email: info@yourcompany.com</p>
+            <p>Address: 1234 Main St, City, State, ZIP</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling to sections
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+
+                const target = document.querySelector(this.getAttribute('href'));
+                target.scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

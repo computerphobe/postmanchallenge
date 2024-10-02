@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Drug Inventory Management System</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #0077ff, #00c6ff);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #333;
+        }
+
+        .login-container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            width: 350px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .login-container:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 119, 255, 0.1);
+            border-radius: 10px;
+            z-index: 0;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #0077ff;
+            position: relative;
+            z-index: 1;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+            position: relative;
+            z-index: 1;
+        }
+
+        label {
+            margin-bottom: 5px;
+            display: block;
+            font-weight: bold;
+            color: #555;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            transition: border 0.3s;
+            position: relative;
+            z-index: 1;
+        }
+
+        input:focus, select:focus {
+            border: 1px solid #0077ff;
+            outline: none;
+        }
+
+        .btn {
+            background-color: #0077ff;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+            transition: background 0.3s;
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn:hover {
+            background-color: #030303;
+        }
+
+        .create-account {
+            margin-top: 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .create-account a {
+            color: #0077ff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .create-account a:hover {
+            text-decoration: underline;
+        }
+
+        /* Decorative Elements */
+        .decorative-shape {
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 100px;
+            height: 100px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            filter: blur(50px);
+            z-index: 0;
+        }
+
+        .decorative-shape:nth-child(2) {
+            top: 50px;
+            left: -30px;
+            width: 120px;
+            height: 120px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-container">
+        <div class="decorative-shape"></div>
+        <div class="decorative-shape"></div>
+        <h2>Login</h2>
+        <form id="login-form">
+            <div class="form-group">
+                <label for="email">Email/Mobile:</label>
+                <input type="text" id="email" required placeholder="Enter your email or mobile">
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" required placeholder="Enter your password">
+            </div>
+            <div class="form-group">
+                <label for="role">Role:</label>
+                <select id="role" required>
+                    <option value="">Select Role</option>
+                    <option value="manufacturer">Manufacturer</option>
+                    <option value="distributor">Distributor</option>
+                    <option value="pharmacy">Pharmacy</option>
+                    <option value="Hospital">Hospital</option>
+                </select>
+            </div>
+            <button type="submit" class="btn">Login</button>
+        </form>
+        <div class="create-account">
+            <p>Don't have an account? <a href="http://localhost:8000/drug/contact/">Create New Account</a></p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('login-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Get selected role
+            const role = document.getElementById('role').value;
+
+            // Redirect based on role selection
+            switch (role) {
+                case 'manufacturer':
+                    window.location.href = 'manufacturedashboard.html'; // Redirect to Manufacturer Dashboard
+                    break;
+                case 'distributor':
+                    window.location.href = './distributerdashboard.html'; // Redirect to Distributor Dashboard
+                    break;
+                case 'pharmacy':
+                    window.location.href = './pharmacydaashboard.html'; // Redirect to Pharmacy Dashboard
+                    break;
+                case 'hospitals':
+                    window.location.href = './hospitaldashboard.html'; // Redirect to Hospitals Dashboard
+                    break;
+                default:
+                    alert('Please select a valid role.');
+                    break;
+            }
+        });
+    </script>
+</body>
+</html>

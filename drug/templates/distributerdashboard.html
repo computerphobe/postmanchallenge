@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Distributor Dashboard - Drug Inventory Management System</title>
+
+    <!-- Import Font Awesome for icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      integrity="sha512-Fo3rlrZj/k7ujTnH/4+0Zb9syb95P6aXl1QqLw5x/6y1eucIX7bvrZ6CMRJvFI+m0oUuMyGkXsTzjkZL8a5tIQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <style>
+      /* General Page Styling */
+      body {
+        font-family: "Roboto", Arial, sans-serif;
+        background-color: #f5f7fa;
+        color: #333;
+        margin: 0;
+        padding: 0;
+      }
+
+      h1,
+      h2 {
+        margin: 0;
+      }
+
+      .container {
+        width: 90%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px 0;
+      }
+
+      /* Header Styling */
+      header {
+        background-color: #2c3e50;
+        color: #fff;
+        padding: 20px 0;
+        text-align: center;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+      }
+
+      header h1 {
+        font-size: 2rem;
+        letter-spacing: 2px;
+      }
+
+      /* Add logo */
+      .logo {
+        height: 50px;
+        width: 50px;
+      }
+
+      /* Layout styling for two-column view */
+      .main-content {
+        display: flex;
+        margin-top: 30px;
+      }
+
+      /* Left-side navigation with main fields */
+      .main-fields {
+        width: 30%;
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.05);
+      }
+
+      .main-fields h2 {
+        font-size: 1.2rem;
+        margin-bottom: 20px;
+      }
+
+      .main-fields div {
+        margin-bottom: 15px;
+        padding: 10px;
+        border-radius: 5px;
+        cursor: pointer;
+        background-color: #f9f9f9;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+      }
+
+      .main-fields div:hover {
+        background-color: #dff9fb;
+        transform: translateX(5px);
+      }
+
+      .main-fields div.active {
+        background-color: #a29bfe;
+        color: white;
+        transform: translateX(5px);
+      }
+
+      /* Right-side form subfields */
+      .form-section {
+        width: 70%;
+        padding: 20px;
+        margin-left: 20px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.05);
+      }
+
+      .form-section h2 {
+        font-size: 1.5rem;
+        color: #34495e;
+        margin-bottom: 20px;
+      }
+
+      label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+        color: #2c3e50;
+      }
+
+      input[type="text"],
+      input[type="number"],
+      input[type="date"],
+      select {
+        width: 100%;
+        padding: 12px;
+        margin: 10px 0 20px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        box-sizing: border-box;
+        font-size: 16px;
+        transition: border 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      input[type="text"]:focus,
+      input[type="number"]:focus,
+      input[type="date"]:focus,
+      select:focus {
+        border-color: #3498db;
+        box-shadow: 0 4px 8px rgba(52, 152, 219, 0.2);
+        outline: none;
+      }
+
+      button {
+        display: inline-block;
+        width: 100%;
+        padding: 15px;
+        background-color: #3498db;
+        color: white;
+        font-size: 16px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+      }
+
+      button:hover {
+        background-color: #2980b9;
+        transform: scale(1.02);
+      }
+
+      button:active {
+        transform: scale(0.98);
+      }
+
+      footer {
+        text-align: center;
+        padding: 20px 0;
+        background-color: #2c3e50;
+        color: #fff;
+        margin-top: 50px;
+      }
+
+      .back-btn {
+        background-color: #e74c3c;
+        margin-top: 20px;
+      }
+
+      .back-btn:hover {
+        background-color: #c0392b;
+      }
+
+      /* Responsive Styling */
+      @media (max-width: 768px) {
+        .container {
+          width: 95%;
+        }
+
+        .main-content {
+          flex-direction: column;
+        }
+
+        .main-fields,
+        .form-section {
+          width: 100%;
+          margin-bottom: 20px;
+        }
+
+        button {
+          font-size: 14px;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="date"],
+        select {
+          font-size: 14px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <img
+        src="https://via.placeholder.com/50"
+        alt="Company Logo"
+        class="logo"
+      />
+      <h1>Distributor Dashboard</h1>
+    </header>
+
+    <div class="container">
+      <div class="main-content">
+        <!-- Left Section: Main Fields -->
+        <div class="main-fields">
+          <h2>Main Fields</h2>
+          <div id="placeOrder" onclick="redirect()">
+            <i class="fas fa-file-invoice"></i> Place Order with Manufacturers
+            📦
+          </div>
+          <div id="trackShipment" onclick="showSection('trackShipment')">
+            <i class="fas fa-shipping-fast"></i> Track Shipment and Receipt 🚚
+          </div>
+          <div id="manageInventory" onclick="showSection('manageInventory')">
+            <i class="fas fa-warehouse"></i> Manage Inventory 🔧
+          </div>
+          <div id="processReturn" onclick="showSection('processReturn')">
+            <i class="fas fa-undo"></i> Process Return to Manufacturer 🔄
+          </div>
+          <div id="handleExpired" onclick="showSection('handleExpired')">
+            <i class="fas fa-exclamation-triangle"></i> Handle Expired Drug ⚠️
+          </div>
+        </div>
+
+        <!-- Right Section: Subfields (hidden until clicked) -->
+        <div class="form-section" id="formSection">
+          <!-- Content will be dynamically injected here -->
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <p>© 2024 Distributor Dashboard</p>
+    </footer>
+
+    <script>
+
+      function redirect() {
+        window.location.href = "http://localhost:8000/drug/add/"
+      }
+
+      function showSection(sectionId) {
+        // Clear active class from all main fields
+        const mainFields = document.querySelectorAll(".main-fields div");
+        mainFields.forEach((field) => field.classList.remove("active"));
+
+        // Set the active class on the clicked field
+        document.getElementById(sectionId).classList.add("active");
+
+        // Select the form section container
+        const formSection = document.getElementById("formSection");
+
+        // Reset formSection content
+        formSection.innerHTML = "";
+
+        // Depending on the sectionId, inject the appropriate form with Back button
+        switch (sectionId) {
+          case "trackShipment":
+            formSection.innerHTML = `
+                        <h2>Track Shipment and Receipt 🚚</h2>
+                        <form action="" method="post">
+                            <label for="shipmentId">Shipment ID:</label>
+                            <input type="text" id="shipmentId" name="shipmentId" required placeholder="Enter shipment ID">
+
+                            <button type="submit">Track Shipment</button>
+                            <button type="button" class="back-btn" onclick="backToMain()">Back</button>
+                        </form>
+                    `;
+            break;
+          case "manageInventory":
+            formSection.innerHTML = `
+                        <h2>Manage Inventory 🔧</h2>
+                        <form action="manage_inventory.php" method="post">
+                            <button type="submit">Go to Inventory Management</button>
+                            <button type="button" class="back-btn" onclick="backToMain()">Back</button>
+                        </form>
+                    `;
+            break;
+          case "processReturn":
+            formSection.innerHTML = `
+                        <h2>Process Return to Manufacturer 🔄</h2>
+                        <form action="process_return.php" method="post">
+                            <label for="returnId">Return ID:</label>
+                            <input type="text" id="returnId" name="returnId" required placeholder="Enter return ID">
+
+                            <button type="submit">Process Return</button>
+                            <button type="button" class="back-btn" onclick="backToMain()">Back</button>
+                        </form>
+                    `;
+            break;
+          case "handleExpired":
+            formSection.innerHTML = `
+                        <h2>Handle Expired Drug ⚠️</h2>
+                        <form action="handle_expired.php" method="post">
+                            <label for="expiredDrugId">Expired Drug ID:</label>
+                            <input type="text" id="expiredDrugId" name="expiredDrugId" required placeholder="Enter expired drug ID">
+
+                            <label for="reportDate">Report Date:</label>
+                            <input type="date" id="reportDate" name="reportDate" required>
+
+                            <button type="submit">Report Expired Drug</button>
+                            <button type="button" class="back-btn" onclick="backToMain()">Back</button>
+                        </form>
+                    `;
+            break;
+          default:
+            formSection.innerHTML = "<h2>Select a field to view details</h2>";
+        }
+      }
+
+      function backToMain() {
+        // Clear active class from all main fields
+        const mainFields = document.querySelectorAll(".main-fields div");
+        mainFields.forEach((field) => field.classList.remove("active"));
+
+        // Clear form section
+        document.getElementById("formSection").innerHTML =
+          "<h2>Select a field to view details</h2>";
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drug Inventory Management System</title>
+
+    <!-- Import Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnH/4+0Zb9syb95P6aXl1QqLw5x/6y1eucIX7bvrZ6CMRJvFI+m0oUuMyGkXsTzjkZL8a5tIQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        /* General Page Styling */
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            background-color: #f5f7fa;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1, h2 {
+            margin: 0;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+
+        /* Header Styling */
+        header {
+            background-color: #2c3e50;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        header h1 {
+            font-size: 2rem;
+            letter-spacing: 2px;
+        }
+
+        /* Add logo */
+        .logo {
+            height: 50px;
+            width: 50px;
+        }
+
+        /* Layout styling for two-column view */
+        .main-content {
+            display: flex;
+            margin-top: 30px;
+        }
+
+        /* Left-side navigation with main fields */
+        .main-fields {
+            width: 30%;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .main-fields h2 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        .main-fields div {
+            margin-bottom: 15px;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #f9f9f9;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .main-fields div:hover {
+            background-color: #dff9fb;
+            transform: translateX(5px);
+        }
+
+        .main-fields div.active {
+            background-color: #a29bfe;
+            color: white;
+            transform: translateX(5px);
+        }
+
+        /* Right-side form subfields */
+        .form-section {
+            width: 70%;
+            padding: 20px;
+            margin-left: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .form-section h2 {
+            font-size: 1.5rem;
+            color: #34495e;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #2c3e50;
+        }
+
+        input[type="text"], input[type="number"], input[type="date"], select {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+            transition: border 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        input[type="text"]:focus, input[type="number"]:focus, input[type="date"]:focus, select:focus {
+            border-color: #3498db;
+            box-shadow: 0 4px 8px rgba(52, 152, 219, 0.2);
+            outline: none;
+        }
+
+        button {
+            display: inline-block;
+            width: 100%;
+            padding: 15px;
+            background-color: #3498db;
+            color: white;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+            transform: scale(1.02);
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            background-color: #2c3e50;
+            color: #fff;
+            margin-top: 50px;
+        }
+
+        .back-btn {
+            background-color: #e74c3c;
+            margin-top: 20px;
+        }
+
+        .back-btn:hover {
+            background-color: #c0392b;
+        }
+
+        /* Responsive Styling */
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+            }
+
+            .main-content {
+                flex-direction: column;
+            }
+
+            .main-fields, .form-section {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+
+            button {
+                font-size: 14px;
+            }
+
+            input[type="text"], input[type="number"], input[type="date"], select {
+                font-size: 14px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <img src="https://via.placeholder.com/50" alt="Company Logo" class="logo">
+        <h1>Drug Inventory Management System</h1>
+    </header>
+
+    <div class="container">
+        <div class="main-content">
+            <!-- Left Section: Main Fields -->
+            <div class="main-fields">
+                <h2>Main Fields</h2>
+                <div id="addDrug" onclick="showSection('addDrug')"><i class="fas fa-pills"></i> Add New Drug 💊</div>
+                <div id="manageInventory" onclick="showSection('manageInventory')"><i class="fas fa-warehouse"></i> Manage Inventory 📦</div>
+                <div id="trackShipments" onclick="showSection('trackShipments')"><i class="fas fa-shipping-fast"></i> Track Shipments 🚚</div>
+                <div id="createOrders" onclick="showSection('createOrders')"><i class="fas fa-file-invoice"></i> Create Orders 📝</div>
+                <div id="processReturns" onclick="showSection('processReturns')"><i class="fas fa-undo"></i> Process Returns 🔄</div>
+            </div>
+
+            <!-- Right Section: Subfields (hidden until clicked) -->
+            <div class="form-section" id="formSection">
+                <!-- Content will be dynamically injected here -->
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2024 Drug Inventory Management System</p>
+    </footer>
+
+    <script>
+        function showSection(sectionId) {
+            // Clear active class from all main fields
+            const mainFields = document.querySelectorAll('.main-fields div');
+            mainFields.forEach(field => field.classList.remove('active'));
+
+            // Set the active class on the clicked field
+            document.getElementById(sectionId).classList.add('active');
+
+            // Select the form section container
+            const formSection = document.getElementById('formSection');
+
+            // Reset formSection content
+            formSection.innerHTML = '';
+
+            // Depending on the sectionId, inject the appropriate form with Back button
+            switch (sectionId) {
+                case 'addDrug':
+                    formSection.innerHTML = `
+                        <h2>Add New Drug 💊</h2>
+                        <form action="add_drug.php" method="post">
+                            <label for="drug_name">Drug Name:</label>
+                            <input type="text" id="drug_name" name="drug_name" required placeholder="Enter drug name">
+
+                            <label for="drug_code">Drug Code:</label>
+                            <input type="text" id="drug_code" name="drug_code" required placeholder="Enter unique drug code">
+
+                            <label for="drug_quantity">Initial Quantity:</label>
+                            <input type="number" id="drug_quantity" name="drug_quantity" required placeholder="Enter initial quantity">
+
+                            <button type="submit">Add Drug</button>
+                            <button type="button" class="back-btn" onclick="backToMain()">Back</button>
+                        </form>
+                    `;
+                    break;
+                case 'manageInventory':
+                    formSection.innerHTML = `
+                        <h2>Manage Inventory 📦</h2>
+                        <form action="view_inventory.php" method="post">
+                            <button type="submit">Go to Inventory Management</button>
+                            <button type="button" class="back-btn" onclick="backToMain()">Back</button>
+                        </form>
+                    `;
+                    break;
+                case 'trackShipments':
+                    formSection.innerHTML = `
+                        <h2>Track Shipments 🚚</h2>
+                        <form action="track_shipments.php" method="post">
+                            <label for="shipment_id">Shipment ID:</label>
+                            <input type="text" id="shipment_id" name="shipment_id" required placeholder="Enter shipment ID">
+
+                            <button type="submit">Track Shipment</button>
+                            <button type="button" class="back-btn" onclick="backToMain()">Back</button>
+                        </form>
+                    `;
+                    break;
+                case 'createOrders':
+                    formSection.innerHTML = `
+                        <h2>Create Orders 📝</h2>
+                        <form action="create_order.php" method="post">
+                            <label for="distributor_name">Distributor Name:</label>
+                            <input type="text" id="distributor_name" name="distributor_name" required placeholder="Enter distributor name">
+
+                            <label for="order_date">Order Date:</label>
+                            <input type="date" id="order_date" name="order_date" required>
+
+                            <label for="order_quantity">Order Quantity:</label>
+                            <input type="number" id="order_quantity" name="order_quantity" required placeholder="Enter order quantity">
+
+                            <button type="submit">Create Order</button>
+                            <button type="button" class="back-btn" onclick="backToMain()">Back</button>
+                        </form>
+                    `;
+                    break;
+                case 'processReturns':
+                    formSection.innerHTML = `
+                        <h2>Process Returns 🔄</h2>
+                        <form action="process_return.php" method="post">
+                            <label for="return_id">Return ID:</label>
+                            <input type="text" id="return_id" name="return_id" required placeholder="Enter return ID">
+
+                            <label for="return_date">Return Date:</label>
+                            <input type="date" id="return_date" name="return_date" required>
+
+                            <label for="return_quantity">Return Quantity:</label>
+                            <input type="number" id="return_quantity" name="return_quantity" required placeholder="Enter return quantity">
+
+                            <button type="submit">Process Return</button>
+                            <button type="button" class="back-btn" onclick="backToMain()">Back</button>
+                        </form>
+                    `;
+                    break;
+                default:
+                    formSection.innerHTML = '<h2>Select a field to view details</h2>';
+            }
+        }
+
+        function backToMain() {
+            // Clear active class from all main fields
+            const mainFields = document.querySelectorAll('.main-fields div');
+            mainFields.forEach(field => field.classList.remove('active'));
+
+            // Clear form section
+            document.getElementById('formSection').innerHTML = '<h2>Select a field to view details</h2>';
+        }
+    </script>
+
+</body>
+</html>
