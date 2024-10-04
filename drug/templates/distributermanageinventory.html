@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -24,8 +25,7 @@
         padding: 0;
       }
 
-      h1,
-      h2 {
+      h1, h2 {
         margin: 0;
       }
 
@@ -217,7 +217,7 @@
   <body>
     <header>
       <img
-        src="../logo.jpg"
+        src="https://via.placeholder.com/50"
         alt="Company Logo"
         class="logo"
       />
@@ -229,21 +229,20 @@
         <!-- Left Section: Main Fields -->
         <div class="main-fields">
           <h2>Main Fields</h2>
-          <div id="placeOrder" onclick="redirect()">
-            <i class="fas fa-file-invoice"></i> Place Order with Manufacturers
-            📦
+          <div id="orderInventory" onclick="showSection('orderInventory')">
+            <i class="fas fa-cart-arrow-down"></i> Order in Inventory 🛒
           </div>
-          <div id="trackShipment" onclick="tracking()">
-            <i class="fas fa-shipping-fast"></i> Track Shipment and Receipt 🚚
+          <div id="orderToBeReceived" onclick="showSection('orderToBeReceived')">
+            <i class="fas fa-box"></i> Order to be Received 📦
           </div>
-          <div id="manageInventory" onclick="inventory()">
-            <i class="fas fa-warehouse"></i> Manage Inventory 🔧
+          <div id="currentStock" onclick="showSection('currentStock')">
+            <i class="fas fa-warehouse"></i> Stock Currently with Us 🏬
           </div>
-          <div id="processReturn" onclick="showSection('processReturn')">
-            <i class="fas fa-undo"></i> Process Return to Manufacturer 🔄
+          <div id="lowStockInfo" onclick="showSection('lowStockInfo')">
+            <i class="fas fa-exclamation-circle"></i> Low Stock Information ⚠️
           </div>
-          <div id="handleExpired" onclick="showSection('handleExpired')">
-            <i class="fas fa-exclamation-triangle"></i> Handle Expired Drug ⚠️
+          <div id="stockExpiry" onclick="showSection('stockExpiry')">
+            <i class="fas fa-calendar-times"></i> Stock Expiry Dates ⏳
           </div>
         </div>
 
@@ -259,18 +258,6 @@
     </footer>
 
     <script>
-
-      function redirect() {
-        window.location.href = "http://localhost:8000/drug/add/"
-      }
-      function tracking(){
-        window.location.href = "http://localhost:8000/drug/track"
-      }
-
-      function inventory(){
-        window.location.href = "http://localhost:8000/drug/mng_inventory_distributor"
-      }
-
       function showSection(sectionId) {
         // Clear active class from all main fields
         const mainFields = document.querySelectorAll(".main-fields div");
@@ -287,32 +274,72 @@
 
         // Depending on the sectionId, inject the appropriate form with Back button
         switch (sectionId) {
-          case "processReturn":
+          case "orderInventory":
             formSection.innerHTML = `
-                        <h2>Process Return to Manufacturer 🔄</h2>
-                        <form action="process_return.php" method="post">
-                            <label for="returnId">Return ID:</label>
-                            <input type="text" id="returnId" name="returnId" required placeholder="Enter return ID">
-
-                            <button type="submit">Process Return</button>
-                            <button type="button" class="back-btn" onclick="backToMain()">Back</button>
-                        </form>
-                    `;
+              <h2>Order in Inventory 🛒</h2>
+              <form action="" method="post">
+                <label for="orderId">Order ID:</label>
+                <input type="text" id="orderId" name="orderId" required placeholder="Enter Order ID">
+                <button type="submit">Submit Order</button>
+                <button type="button" class="back-btn" onclick="backToMain()">Back</button>
+              </form>`;
             break;
-          case "handleExpired":
+            <!-- Inside the showSection() function -->
+case "stockExpiry":
+  formSection.innerHTML = `
+    <h2>Stock Expiring Soon ⏳</h2>
+    <form action="" method="post">
+      <label for="expiryRange">Check Stock Expiring Within:</label>
+      <select id="expiryRange" name="expiryRange">
+        <option value="7">Next 7 Days</option>
+        <option value="14">Next 14 Days</option>
+        <option value="30">Next 30 Days</option>
+        <option value="60">Next 60 Days</option>
+      </select>
+      <button type="submit">View Expiring Stock</button>
+      <button type="button" class="back-btn" onclick="backToMain()">Back</button>
+    </form>
+    <div id="expiringStockDetails">
+      <!-- Placeholder for stock expiring soon details -->
+    </div>`;
+  break;
+
+
+          case "orderToBeReceived":
             formSection.innerHTML = `
-                        <h2>Handle Expired Drug ⚠️</h2>
-                        <form action="handle_expired.php" method="post">
-                            <label for="expiredDrugId">Expired Drug ID:</label>
-                            <input type="text" id="expiredDrugId" name="expiredDrugId" required placeholder="Enter expired drug ID">
-
-                            <label for="reportDate">Report Date:</label>
-                            <input type="date" id="reportDate" name="reportDate" required>
-
-                            <button type="submit">Report Expired Drug</button>
-                            <button type="button" class="back-btn" onclick="backToMain()">Back</button>
-                        </form>
-                    `;
+              <h2>Order to be Received 📦</h2>
+              <form action="" method="post">
+                <label for="trackingId">Tracking ID:</label>
+                <input type="text" id="trackingId" name="trackingId" required placeholder="Enter Tracking ID">
+                <button type="submit">Track Order</button>
+                <button type="button" class="back-btn" onclick="backToMain()">Back</button>
+              </form>`;
+            break;
+          case "currentStock":
+            formSection.innerHTML = `
+              <h2>Stock Currently with Us 🏬</h2>
+              <form action="" method="post">
+                <button type="submit">View Current Stock</button>
+                <button type="button" class="back-btn" onclick="backToMain()">Back</button>
+              </form>`;
+            break;
+          case "lowStockInfo":
+            formSection.innerHTML = `
+              <h2>Low Stock Information ⚠️</h2>
+              <form action="" method="post">
+                <button type="submit">View Low Stock Items</button>
+                <button type="button" class="back-btn" onclick="backToMain()">Back</button>
+              </form>`;
+            break;
+          case "stockExpiry":
+            formSection.innerHTML = `
+              <h2>Stock Expiry Dates ⏳</h2>
+              <form action="" method="post">
+                <label for="expiryDate">Expiry Date:</label>
+                <input type="date" id="expiryDate" name="expiryDate" required>
+                <button type="submit">View Expired Stock</button>
+                <button type="button" class="back-btn" onclick="backToMain()">Back</button>
+              </form>`;
             break;
           default:
             formSection.innerHTML = "<h2>Select a field to view details</h2>";

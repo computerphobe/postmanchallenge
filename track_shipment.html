@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Track Your Shipment</title>
-
+    <!-- Link to Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
     <!-- Bootstrap CSS -->
@@ -109,17 +109,22 @@
             }
         }
     </style>
-
 </head>
 <body>
-    <h1>Track Your Shipment</h1>
-    <form method="POST">
-        {% csrf_token %}
-        <label for="tracking_number">Enter Tracking Number:</label>
-        <input type="text" id="tracking_number" name="tracking_number" required>
-        <label for="slug">Enter courier information</label>
-        <input type="text" name="slug" id="slug">
-        <button type="submit">Track</button>
-    </form>
+
+    <div class="container">
+        <h1>Track Your Shipment</h1>
+        <form method="POST">
+            {% csrf_token %}
+            <label for="tracking_number">Enter Tracking Number:</label>
+            <input type="text" id="tracking_number" name="tracking_number" required placeholder="e.g., 123456789">
+
+            <label for="slug">Enter Courier Information:</label>
+            <input type="text" id="slug" name="slug" placeholder="e.g., FedEx, UPS">
+
+            <button type="submit">Track</button>
+        </form>
+    </div>
+
 </body>
 </html>

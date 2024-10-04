@@ -12,4 +12,6 @@ urlpatterns = [
     path("features/", views.features, name="features"),
     path('add/', views.add_drug, name="add_drug"),
     path('track/', views.track_shipment, name="track_shipment"),
+    path('mng_inventory_manufacturer/', views.mng_inventory_manufacturer, name="mng_inventory_manufacturer"),
+    path('mng_inventory_distributor/', views.mng_inventory_distributor, name="mng_inventory_distributor")
 ]
